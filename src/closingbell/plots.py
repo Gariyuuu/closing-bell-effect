@@ -330,7 +330,10 @@ def fig_rolling(roll: pd.DataFrame) -> Path:
 # 9: time-of-day comparison
 # --------------------------------------------------------------------------
 def fig_time_of_day(tod: pd.DataFrame, tod_ext: pd.DataFrame) -> Path:
-    fig, axes = plt.subplots(1, 2, figsize=(11.4, 3.5), sharey=True)
+    # Both panels share an x-axis: the figure exists to compare coefficient
+    # magnitudes, and independent auto-scaling would place near-identical
+    # estimates at visibly different positions across the two panels.
+    fig, axes = plt.subplots(1, 2, figsize=(11.4, 3.5), sharey=True, sharex=True)
     for ax, d, lab in [(axes[0], tod, "all sessions"),
                        (axes[1], tod_ext, "extreme moves only (5% tails)")]:
         d = d.sort_values("window")
