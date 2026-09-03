@@ -1,0 +1,43 @@
+{
+  "bars": 1220267,
+  "tickers": [
+    "AAPL",
+    "AMZN",
+    "GOOGL",
+    "IWM",
+    "JPM",
+    "META",
+    "MSFT",
+    "NVDA",
+    "QQQ",
+    "SPY",
+    "TSLA",
+    "XOM"
+  ],
+  "sample_start": "2021-01-04",
+  "sample_end": "2026-03-31",
+  "calendar_sessions": 1316,
+  "early_closes": 10,
+  "ticker_sessions": 15792,
+  "usable_ticker_sessions": 15626,
+  "eligible_sessions": 14958,
+  "events_5pct": 1974,
+  "events_1pct": 508,
+  "logit_fit": {
+    "n": 1974,
+    "base_rate": 0.4635258358662614,
+    "brier": 0.24108217194209924,
+    "brier_baseline": 0.24866963535074507,
+    "auc": 0.5997688302708505
+  },
+  "main_coefs": {
+    "r_close": -0.14368127801988476,
+    "avol": 9.602607239378429,
+    "r_close_x_avol": -0.006123920829269819
+  },
+  "main_tstats": {
+    "r_close": -2.227941066916332,
+    "avol": 1.60193165528429,
+    "r_close_x_avol": -0.06392339282974549
+  }
+}

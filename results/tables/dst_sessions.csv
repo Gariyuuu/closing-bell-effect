@@ -1,0 +1,12 @@
+session,dst_transition,tickers,expected_bars,median_observed,min_observed
+2021-03-15,spring_forward,12,78,78.0,78
+2021-11-08,fall_back,12,78,78.0,76
+2022-03-14,spring_forward,12,78,78.0,78
+2022-11-07,fall_back,12,78,78.0,78
+2023-03-13,spring_forward,12,78,24.5,22
+2023-11-06,fall_back,12,78,78.0,78
+2024-03-11,spring_forward,12,78,78.0,78
+2024-11-04,fall_back,12,78,78.0,78
+2025-03-10,spring_forward,12,78,78.0,78
+2025-11-03,fall_back,12,78,78.0,78
+2026-03-09,spring_forward,12,78,78.0,78

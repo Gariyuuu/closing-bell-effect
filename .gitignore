@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+*.egg-info/
+.pytest_cache/
+.DS_Store
+logs/
+
+# Vendor data is never redistributed from this repository; `make data` rebuilds
+# it from source.  Results (tables, figures, summary.json) ARE committed so the
+# report is readable without re-running the pipeline.
+data/

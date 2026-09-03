@@ -1,0 +1,5 @@
+exclusion_reason,sessions,tickers
+incomplete_session,127,12
+no_data,36,9
+erroneous_print,2,2
+missing_core_slot,1,1
