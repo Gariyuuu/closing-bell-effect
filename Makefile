@@ -1,6 +1,6 @@
 PY := .venv/bin/python
 
-.PHONY: help venv data external pipeline figures notebooks test all clean clean-results
+.PHONY: help venv data external pipeline figures notebooks site test all clean clean-results
 
 help:
 	@echo "make venv       create the virtualenv and install the package"
@@ -10,6 +10,7 @@ help:
 	@echo "make figures    rebuild every figure from saved tables"
 	@echo "make notebooks  execute the notebooks in place"
 	@echo "make test       run the test suite"
+	@echo "make site       sync figures into the static presentation layer"
 	@echo "make all        external + data + pipeline + figures"
 
 venv:
@@ -33,6 +34,11 @@ notebooks:
 		../$(PY) -m jupyter nbconvert --to notebook --execute --inplace \
 			--ExecutePreprocessor.timeout=900 $$n || exit 1; \
 	done
+
+# The static presentation layer serves copies of the generated figures so that
+# `site/` can be deployed on its own.  This target keeps them in step.
+site:
+	cp results/figures/*.png site/figures/
 
 test:
 	$(PY) -m pytest tests/ -q
