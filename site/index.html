@@ -9,164 +9,16 @@
 <meta property="og:description" content="1.22 million 5-minute bars. The close is busy — it is not uniquely predictive.">
 <meta property="og:type" content="article">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='13' font-size='13'>📉</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#fcfcfa">
+<link rel="stylesheet" href="pub.css">
 <style>
-  :root{
-    --ink:#16181c; --body:#33383f; --muted:#767d87; --rule:#e2e5ea;
-    --bg:#ffffff; --panel:#f7f8fa; --accent:#2f5c8f; --warn:#9b2226;
-    --measure:44rem;
-    --serif: "Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
-    --sans: -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Helvetica,Arial,sans-serif;
-    --mono: ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
-  }
-  *{box-sizing:border-box}
-  html{-webkit-text-size-adjust:100%}
-  body{
-    margin:0; background:var(--bg); color:var(--body);
-    font-family:var(--sans); font-size:17px; line-height:1.65;
-    -webkit-font-smoothing:antialiased;
-  }
-  .wrap{max-width:min(76rem,100% - 2.5rem); margin-inline:auto}
-  .col{max-width:var(--measure)}
-  a{color:var(--accent); text-underline-offset:.18em; text-decoration-thickness:.06em}
-  a:hover{color:var(--ink)}
-
-  /* ---------- masthead ---------- */
-  header.mast{border-bottom:1px solid var(--rule); padding:4.5rem 0 3rem}
-  .kicker{
-    font-family:var(--sans); font-size:.72rem; letter-spacing:.14em;
-    text-transform:uppercase; color:var(--muted); margin:0 0 1.4rem
-  }
-  h1{
-    font-family:var(--serif); font-weight:600; color:var(--ink);
-    font-size:clamp(2.4rem,6vw,4rem); line-height:1.06;
-    letter-spacing:-.02em; margin:0 0 .7rem
-  }
-  .sub{
-    font-family:var(--serif); font-style:italic; color:var(--muted);
-    font-size:clamp(1.05rem,2.4vw,1.3rem); line-height:1.4;
-    margin:0 0 2.2rem; max-width:38rem
-  }
-  .lede{font-size:1.12rem; margin:0 0 2rem; max-width:var(--measure)}
-
-  .answer{
-    border-left:3px solid var(--ink); padding:.15rem 0 .15rem 1.5rem;
-    margin:0 0 2.4rem; max-width:var(--measure)
-  }
-  .answer b{
-    display:block; font-family:var(--serif); font-size:1.7rem;
-    color:var(--ink); line-height:1.2; margin-bottom:.5rem; font-weight:600
-  }
-  .answer p{margin:0; font-size:1.04rem}
-
-  .meta{
-    display:flex; flex-wrap:wrap; gap:0 2.5rem; padding-top:1.6rem;
-    border-top:1px solid var(--rule); font-size:.82rem; color:var(--muted)
-  }
-  .meta div{padding:.3rem 0}
-  .meta b{display:block; font-family:var(--mono); font-size:1.02rem; color:var(--ink); font-weight:500}
-
-  /* ---------- sections ---------- */
-  section{padding:4rem 0; border-bottom:1px solid var(--rule)}
-  .num{
-    font-family:var(--mono); font-size:.75rem; color:var(--muted);
-    letter-spacing:.1em; margin:0 0 .6rem
-  }
-  h2{
-    font-family:var(--serif); font-weight:600; color:var(--ink);
-    font-size:clamp(1.6rem,3.6vw,2.25rem); line-height:1.15;
-    letter-spacing:-.015em; margin:0 0 1.1rem; max-width:40rem
-  }
-  h3{
-    font-family:var(--sans); font-weight:600; color:var(--ink);
-    font-size:1rem; margin:2.4rem 0 .7rem
-  }
-  p{margin:0 0 1.1rem; max-width:var(--measure)}
-  .note{font-size:.9rem; color:var(--muted); max-width:var(--measure)}
-  strong{color:var(--ink); font-weight:600}
-
-  /* ---------- figures ---------- */
-  figure{margin:2.4rem 0 0}
-  figure img{
-    display:block; width:100%; height:auto;
-    border:1px solid var(--rule); border-radius:3px; background:#fff
-  }
-  figcaption{
-    font-size:.85rem; color:var(--muted); margin-top:.85rem;
-    max-width:52rem; line-height:1.55
-  }
-  figcaption b{color:var(--ink); font-weight:600}
-
-  /* ---------- tables ---------- */
-  .scroll{overflow-x:auto; margin:1.8rem 0; -webkit-overflow-scrolling:touch}
-  table{border-collapse:collapse; width:100%; min-width:34rem; font-size:.88rem}
-  caption{
-    caption-side:top; text-align:left; font-size:.85rem;
-    color:var(--muted); padding-bottom:.7rem
-  }
-  th,td{padding:.6rem .85rem; text-align:right; border-bottom:1px solid var(--rule)}
-  th:first-child,td:first-child{text-align:left}
-  thead th{
-    font-size:.72rem; letter-spacing:.06em; text-transform:uppercase;
-    color:var(--muted); font-weight:600; border-bottom:1px solid #c9ced6
-  }
-  tbody tr.hl td{background:#f2f6fb}
-  tbody tr.base td{color:var(--muted); font-style:italic}
-  td.num-cell,th.num-cell{font-family:var(--mono); font-variant-numeric:tabular-nums}
-  tfoot td{border:0; padding-top:.8rem; font-size:.8rem; color:var(--muted); text-align:left}
-
-  /* ---------- callouts ---------- */
-  .stat-row{
-    display:grid; gap:1px; background:var(--rule);
-    border:1px solid var(--rule); margin:2rem 0;
-    grid-template-columns:repeat(auto-fit,minmax(11rem,1fr))
-  }
-  .stat{background:var(--bg); padding:1.15rem 1.25rem}
-  .stat b{
-    display:block; font-family:var(--mono); font-size:1.5rem;
-    color:var(--ink); font-weight:500; line-height:1.1
-  }
-  .stat span{display:block; font-size:.78rem; color:var(--muted); margin-top:.4rem; line-height:1.4}
-
-  .box{
-    background:var(--panel); border:1px solid var(--rule);
-    padding:1.4rem 1.5rem; margin:2rem 0; max-width:52rem
-  }
-  .box p:last-child{margin-bottom:0}
-  .box.warn{border-left:3px solid var(--warn)}
-
-  pre{
-    font-family:var(--mono); font-size:.86rem; background:var(--panel);
-    border:1px solid var(--rule); padding:1rem 1.2rem; overflow-x:auto;
-    margin:1.4rem 0; max-width:52rem; line-height:1.6; color:var(--ink)
-  }
-  code{font-family:var(--mono); font-size:.9em; color:var(--ink)}
-
-  ul{max-width:var(--measure); padding-left:1.15rem; margin:0 0 1.1rem}
-  li{margin-bottom:.5rem}
-  li::marker{color:var(--muted)}
-
-  .defect{border-top:1px solid var(--rule); padding-top:1.3rem; margin-top:1.8rem; max-width:52rem}
-  .defect h3{margin-top:0}
-
-  /* ---------- footer ---------- */
-  footer{padding:3.5rem 0 5rem; font-size:.88rem; color:var(--muted)}
-  footer p{max-width:52rem}
-  .btn{
-    display:inline-block; font-family:var(--sans); font-size:.9rem; font-weight:500;
-    color:var(--bg); background:var(--ink); padding:.7rem 1.3rem;
-    border-radius:3px; text-decoration:none; margin:.4rem .5rem .4rem 0
-  }
-  .btn:hover{background:var(--accent); color:var(--bg)}
-  .btn.ghost{background:transparent; color:var(--ink); border:1px solid #c9ced6}
-  .btn.ghost:hover{background:var(--panel); color:var(--ink)}
-
-  @media (max-width:640px){
-    body{font-size:16px}
-    header.mast{padding:2.8rem 0 2.2rem}
-    section{padding:2.8rem 0}
-    .answer b{font-size:1.35rem}
-    .meta{gap:0 1.5rem}
-  }
+  /* closing-bell-effect — study-local overrides on the W1 publication system */
+  .meta{gap:0 var(--s6)}
+  .defect h3{font-size:.95rem}
+  footer h2{max-width:none}
 </style>
 </head>
 <body>
@@ -574,7 +426,7 @@
 
 <footer>
   <div class="wrap">
-    <h2 style="margin-bottom:1rem">Reproduce it</h2>
+    <h2>Reproduce it</h2>
     <p>
       The full pipeline — ingestion, session validation, event construction, estimation, every
       figure and table — is open source, along with the report, the research plan, the data
@@ -589,7 +441,7 @@ make test        # 67 tests</pre>
       <a class="btn" href="https://github.com/Gariyuuu/closing-bell-effect">View on GitHub</a>
       <a class="btn ghost" href="https://github.com/Gariyuuu/closing-bell-effect/blob/main/report/report.md">Read the full report</a>
     </p>
-    <p class="note" style="margin-top:2rem">
+    <p class="note colophon">
       Research repository · 1,220,267 five-minute bars · 2021-01-04 to 2026-03-31 ·
       All figures generated from the persisted analysis outputs. Static presentation; no
       analysis runs in the browser and no data is live.
@@ -597,5 +449,6 @@ make test        # 67 tests</pre>
   </div>
 </footer>
 
+<script src="pub.js" defer></script>
 </body>
 </html>
